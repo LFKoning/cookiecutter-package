@@ -1,0 +1,37 @@
+{
+    "author_name": null,
+    "author_email": "{{ cookiecutter.author_name|lower|replace(' ', '.') }}@gmail.com",
+    "project": null,
+    "package_name": "{{ cookiecutter.project|lower|replace(' ', '-') }}",
+    "__package_path": "{{ cookiecutter.package_name|lower|replace('-', '_') }}",
+    "package_description": null,
+    "package_keywords": null,
+    "azure_user": "{{ cookiecutter.author_name|lower|replace(' ', '-') }}",
+    "azure_project": "{{ cookiecutter.package_name }}",
+    "azure_repo": "{{ cookiecutter.package_name }}",
+    "azure_url": "https://{{ cookiecutter.azure_user }}@dev.azure.com/{{ cookiecutter.azure_user }}/{{ cookiecutter.azure_project|urlencode }}/_git/{{ cookiecutter.azure_repo }}",
+    "python_version": "3.10",
+    "includes_cli": false,
+    "includes_data": false,
+    "create_git": true,
+    "create_conda": true,
+    "precommit": "{{ cookiecutter.create_conda }}",
+
+    "__prompts__": {
+        "author_name": "Your full name",
+        "author_email": "Your e-mail address",
+        "project": "Name of the project",
+        "package_name": "Python package name",
+        "package_description": "Single line description",
+        "package_keywords": "Comma-separated keywords",
+        "azure_user": "Azure username",
+        "azure_project": "Azure project",
+        "azure_repo": "Azure repository",
+        "python_version": "Python version",
+        "includes_cli": "Create a Command Line Interface (CLI)",
+        "includes_data": "Create package data folders",
+        "create_git": "Initialize a new git repository",
+        "create_conda": "Create an Anaconda environment",
+        "precommit": "Install pre-commit hooks"
+    }
+}

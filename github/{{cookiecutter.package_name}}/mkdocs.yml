@@ -1,0 +1,57 @@
+# Documentation website settings.
+site_name: {{ cookiecutter.project }}
+
+# URL when docs are hosted elsewhere.
+# site_url:
+
+# Name and URL for the git repository.
+# repo_name:
+# repo_url:
+
+# Navigation menu (left-hand side).
+nav:
+    - Home: index.md
+    - Reference: reference/
+    - About: about.md
+
+# Enable markdown extensions.
+markdown_extensions:
+- pymdownx.snippets
+- pymdownx.superfences
+
+# Theme for the website.
+theme:
+    name: material
+    locale: en
+
+# Path to the document markdown files.
+docs_dir: docs
+
+# Host and port used by mkdocs serve.
+dev_addr: 127.0.0.1:8000
+
+# Folders to watch for changes while mkdocs serve is active.
+watch:
+- src/{{ cookiecutter.__package_path }}/
+- docs/
+
+# MkDocs plug-ins.
+plugins:
+- search
+- section-index
+
+- gen-files:
+    scripts:
+    - docs/make_package_docs.py
+
+- literate-nav:
+    nav_file: SUMMARY.md
+
+- mkdocstrings:
+    default_handler: python
+    handlers:
+        python:
+            paths: [src]
+            options:
+                docstring_style: numpy
+                show_source: true

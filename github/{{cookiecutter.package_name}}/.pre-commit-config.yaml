@@ -1,0 +1,70 @@
+repos:
+
+  # Some default pre-commit hooks.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+
+    # Makes sure all line endings are the same.
+    - id: mixed-line-ending
+      name: Check and fix mixed line breaks
+
+    # Remove trailing spaces from lines.
+    # Note: Leaves hard line-breaks in markdown intact.
+    - id: trailing-whitespace
+      name: Check and fix trailing whitespace
+      args: [--markdown-linebreak-ext=md]
+
+    # Check YAML validity.
+    - id: check-yaml
+      name: Check YAML formatting
+
+    # Check unresolved merge conflicts.
+    - id: check-merge-conflict
+      name: Check merge conflicts
+
+  # Hooks using local packages.
+  - repo: local
+    hooks:
+
+    # Sort imports in scripts.
+    - id: isort
+      name: Sort import statements
+      stages: [commit]
+      language: system
+      entry: python -m isort
+      types: [python]
+      files: (^src/^tests)
+
+    # Auto-format with black.
+    - id: black
+      name: Format code using black
+      stages: [commit]
+      language: system
+      entry: python -m black
+      types: [python]
+      files: (^src/|^tests/)
+
+    # Lint with pylint.
+    - id: pylint
+      name: Check code style using pylint
+      language: system
+      stages: [commit]
+      entry: python -m pylint
+      types: [python]
+      files: (^src/)
+
+    # Scan local environment for vulnerabilities.
+    # For info on vulnerabilities go to:
+    # GHSA:   https://github.com/advisories?query=<GHSA-code>
+    # Other:  https://github.com/pypa/advisory-database/tree/main/vulns
+    # See also: pip-audit --desc=on
+    - id: pip-audit
+      name: Check vulnerabilities using pip-audit
+      language: system
+      stages: [commit]
+      entry: python -m pip_audit
+      pass_filenames: false
+      # Use for unfixable vulnerabilities **after consulting security**.
+      # Repeat for every vulnerability you need to ignore.
+      # args: [--ignore-vuln, <vulnerability code>]

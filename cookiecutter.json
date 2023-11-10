@@ -1,0 +1,6 @@
+{
+    "template": [
+        "Azure DevOps (./devops)",
+        "GitHub (./github)"
+    ]
+}

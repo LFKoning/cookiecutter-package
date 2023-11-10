@@ -1,0 +1,102 @@
+[project]
+name = "{{cookiecutter.package_name}}"
+version = "0.0.1"
+
+# Optional descriptive information for the project.
+description = "{{cookiecutter.package_description}}"
+{% if cookiecutter.package_keywords -%}
+keywords = {{cookiecutter.package_keywords.split(',')}}
+{% endif %}
+readme = "README.md"
+
+# Fill in authors and maintainers here.
+authors = [
+    {name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}"},
+]
+maintainers = [
+    {name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}"},
+]
+
+# Optional classifications.
+# See: https://pypi.org/classifiers/
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: {{cookiecutter.python_version}}",
+]
+
+# Python version and dependencies
+requires-python = ">={{cookiecutter.python_version}}"
+dependencies = [
+    # TODO: Fill in dependencies here.
+]
+
+[project.optional-dependencies]
+# Regular development dependencies.
+dev = [
+    "isort >= 5.12",
+    "black >= 23.10",
+    "pylint >= 3.0",
+    "pytest >= 7.4",
+    "pytest-cov >= 4.1",
+    "pip-audit >= 2.6.1",
+    {% if cookiecutter.precommit -%}
+    "pre-commit >= 3.5",
+    {%- endif %}
+]
+
+# Dependencies for building docs with mkdocs.
+docs = [
+    "mkdocs >= 1.5",
+    "mkdocs-material >= 9.4",
+    "mkdocs-gen-files >= 0.5",
+    "mkdocs-literate-nav >= 0.6",
+    "mkdocs-section-index >= 0.3",
+    "mkdocstrings >= 0.23",
+    "mkdocstrings-python >= 1.7",
+]
+
+[project.urls]
+# URL of the DevOps repository.
+repository = "{{cookiecutter.azure_url}}"
+
+[build-system]
+# Using setuptools as build backend.
+requires = ["setuptools >= 68", "wheel >= 0.4"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+# Place package source code in src folder.
+where = ["src"]
+
+{% if cookiecutter.includes_data -%}
+[tool.setuptools.package-data]
+# Syntax: <package> = ["<package>/<folder>/<file pattern>", ...]
+{{ cookiecutter.__package_path }} = ["{{ cookiecutter.__package_path }}/package_data/*"]
+{% endif %}
+{% if cookiecutter.includes_cli -%}
+[project.scripts]
+# Syntax: <command> = "<package>.<module>:<function>"
+greeting = "{{ cookiecutter.__package_path }}.cli:main"
+{% endif %}
+
+# Pylint settings.
+# To generate an example: `pylint --generate-toml-config > pylint_example.toml`
+
+[tool.pylint.main]
+# Set number of concurrent jobs, use 0 to autodetect.
+jobs=0
+
+[tool.pylint.basic]
+# Good variable names which should always be accepted.
+good-names = ["X", "y", "df", "e", "n"]
+
+[tool.pylint.format]
+# Maximum characters on a single line (same as black).
+max-line-length = 88
+
+[tool.pylint.messages_control]
+# List of messages or message categories to ignore.
+disable = ["logging-fstring-interpolation"]
