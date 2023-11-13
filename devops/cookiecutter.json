@@ -27,6 +27,7 @@
         "azure_user": "Azure username",
         "azure_project": "Azure project",
         "azure_repo": "Azure repository",
+        "azure_url": "Azure remote URL",
         "python_version": "Python version",
         "includes_cli": "Create a Command Line Interface (CLI)",
         "includes_data": "Create package data folders",
