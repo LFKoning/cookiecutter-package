@@ -7,14 +7,14 @@ package template includes the following features:
 
 - Creates package folder and file structure.
 - Creates a `pyproject.toml` installation file.
-- Documentation templates for `mkdocs`.
-- Pre-commit hooks for code quality checks.
-- Azure or GitHub CI pipelines for code quality checks.
+- Includes documentation templates for `mkdocs`.
+- Includes `pre-commit` hooks for code quality checks.
+- Includes Azure and GitHub CI pipelines for code quality checks.
 - Optional: Examples for a Command Line Interface and package data.
 - Optional: Creates a new git repository.
 - Optional: Creates a new Anaconda virtual environment.
 
-The templates are create using the `cookiecutter` package, so you need to have that
+The templates are created using the `cookiecutter` package, so you need to have that
 installed to be able to use these templates.
 
 ## Installation
@@ -32,36 +32,35 @@ Or if you prefer Anaconda:
 conda install cookiecutter
 ```
 
-After installing `cookiecutter`, you can use these templates to kickstart your projects!
+After installing `cookiecutter`, you can kickstart your package with these templates!
 
 ## Usage
 
-Once you have `cookiecutter` installed, you can use the template to create a new project.
-Go to the folder on your local drive where you want to create the new project and type:
+Once you have `cookiecutter` installed, you can use the template to create a new
+package. Go to the folder on your local drive where you want to create the package and type:
 
 ```shell
 cookiecutter https://github.com/LFKoning/cookiecutter-package
 ```
 
-This will start `cookiecutter` and ask you for to choose from these templates:
+This will start `cookiecutter` and ask you to choose between these templates:
 
 1. Azure DevOps
 2. GitHub
 
-Select the remote git service you want to use to continue. After that `cookiecutter` will
-ask you to provide additional information about your package.
+Select the remote git service you want to use and fill in the information that
+`cookiecutter` needs to set up your package (See below).
 
-If a default value is available, `cookiecutter` will display the default between square
-brackets (`[..]`). Simply press `Enter` to accept the default value and continue.
+Answer all of the questions `cookiecutter` asks; sometimes a default value is available, which `cookiecutter` displays between square brackets (`[..]`). Press `Enter` to accept the default and continue.
 
-*Tip: If you make an error filling in the values, you can either stop the process using
-`CTRL + C` of continue and correct the mistake later on.*
+*Tip: If you answer a question incorrectly, you can always stop the process using
+`CTRL + C` and start over.*
 
 ### Azure DevOps
 
-Selecting Azure DevOps creates a package tailored for this service. This will impact
-the remote repository URL and CI pipeline for the package. You will be asked to provide
-the following information:
+Selecting Azure DevOps tailors the package for this remote service. This will impact
+the repository URL and CI pipeline. You will be asked to provide the following
+information:
 
 |Input|Description|Example|
 |---|---|---|
@@ -84,9 +83,9 @@ the following information:
 
 ### GitHub
 
-Selecting Azure DevOps creates a package tailored for this service. This will impact
-the remote repository URL and CI pipeline for the package. You will be asked to provide
-the following information:
+Selecting GitHub tailors the package for this remote service. This will impact
+the repository URL and CI pipeline. You will be asked to provide the following
+information:
 
 |Input|Description|Example|
 |---|---|---|
@@ -108,9 +107,9 @@ the following information:
 
 ## Package creation
 
-After filling in the information, you should see a new folder with your package's
-name in your working directory. This folder contains the folder structure and files for
-your newly created package.
+After filling in the required information, you should see a new folder with your
+package's name in the working directory. This folder contains the folder structure
+and files for your newly created package.
 
 Depending on the choices you made, `cookiecutter` will have also:
 
