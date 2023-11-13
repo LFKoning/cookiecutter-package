@@ -81,6 +81,20 @@ information:
 |`create_conda`|Create a new Anaconda environment? (y/n)|`y`|
 |`precommit`|Install pre-commit hooks? (y/n).|`y`|
 
+#### Important:
+
+Make sure you create a **completely empty** repository on Azure DevOps for the package, so turn off the default `README` and `.gitignore`. Otherwise you will have a merge conflict right from the start.
+
+To enable the CI pipeline in Azure DevOps, follow these steps:
+
+1. Go to `Pipelines` in the left menu.
+2. Click the `Create Pipeline` button in the middle of the screen.
+3. Select `Azure Repos Git` as the location for your code.
+4. Select the repository that holds the code for your package.
+5. Select `Existing Azure Pipelines YAML file`.
+6. On the right-hand sidepanel select `/azure-pipeline.yml`.
+7. Click `Run` to start the pipeline.
+
 ### GitHub
 
 Selecting GitHub tailors the package for this remote service. This will impact
