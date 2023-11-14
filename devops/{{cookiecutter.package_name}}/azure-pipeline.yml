@@ -26,7 +26,7 @@ steps:
     python -m pip install -e .[dev]
   displayName: 'Installing project package'
 
-# Use pip-audit to scan the environment.
+# Run pip-audit to scan for vulnerabilities in working environment.
 - script: |
     python -m pip install pip-audit
     python -m pip_audit --skip-editable
