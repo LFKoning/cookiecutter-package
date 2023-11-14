@@ -26,37 +26,37 @@ steps:
     python -m pip install -e .[dev]
   displayName: 'Installing project package'
 
+# Use pip-audit to scan the environment.
+- script: |
+    python -m pip install pip-audit
+    python -m pip_audit --skip-editable
+  displayName: "Checking vulnerabilities with pip-audit."
+  # Only warn about vulnerabilities.
+  continueOnError: true
+
 # Run isort on src.
 - script: |
     python -m pip install isort
     python -m isort -c -rc src/
   displayName: 'Sorting imports with isort'
-  enabled: true
-  continueOnError: false
 
 # Run auto-formatter on src.
 - script: |
     python -m pip install black
     python -m black --check src/
   displayName: 'Running autoformatter black'
-  enabled: true
-  continueOnError: false
 
 # Run linting on src
 - script: |
     python -m pip install pylint
     python -m pylint src/
   displayName: 'Running linting with pylint'
-  enabled: true
-  continueOnError: false
 
 # Run unit tests and compute test coverage
 - script: |
     python -m pip install pytest pytest-cov pytest-azurepipelines
     python -m pytest --ignore=docs/ --cov=src/ --cov-report=xml tests/
   displayName: 'Running tests with pytest'
-  enabled: true
-  continueOnError: false
 
 # Format and publish coverage report
 - task: PublishCodeCoverageResults@1
